@@ -6,3 +6,6 @@ cd NAME
 ng generate component COMP_NAME // components wie forms..
 ng generate service SERVICE_NAME //für services wie messages, authentication
 ng generate module app-routing // für routes
+
+# tutorial login
+http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
