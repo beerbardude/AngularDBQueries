@@ -1,0 +1,42 @@
+<h2>Queries ausführen</h2>
+<p>
+  <button (click)="getCustomers()">Kunden</button>
+</p>
+<p>
+  <button (click)="getPolicies()">Policen</button>
+</p>
+<p>
+  <button (click)="getUsers()">Benutzer</button>
+</p>
+
+<ul>
+<li *ngFor="let object of objects">
+  {{ object }}
+  <ul>
+    
+
+    <!--
+    <li>{{ customer.id }}</li>
+    <li>{{ customer.lastname }}</li>
+    <li>{{ customer.firstname }}</li>
+    <li>{{ customer.street }}</li>
+    <li>{{ customer.housenumber }}</li>
+    <li>{{ customer.postcode }}</li>
+    <li>{{ customer.town }}</li>
+    <li>{{ customer.country }}</li>
+    <li>{{ customer.language }}</li>    
+    -->
+  </ul>
+  <hr>
+</li>
+</ul>
+
+
+<!-- versuch mit php query auszuführen-->
+<script>
+  var app = angular.module('app', []);
+  app.controller('customersCtrl', function($scope, $http) {
+      $http.get("customers_mysql.php")
+      .then(function (response) {$scope.names = response.data.records;});
+  });
+</script>
