@@ -6,6 +6,6 @@ export class Policy {
     customerId: number;
     startdate: Date;
     enddate: Date;
-    premium: number;
+    premium: Number;
     currency: string;    
 }
