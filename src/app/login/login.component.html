@@ -1,10 +1,10 @@
 <div>
     <h2></h2>
         <label>User </label>
-        <input [(ngModel)]="user.name" required/>
+        <input id="inputName" [(ngModel)]="user.name" required/>
         <br>
         <label>Pass </label>
-        <input [(ngModel)]="user.pass" required/>
+        <input id="inputPass" [(ngModel)]="user.pass" required/>
        
         <button (click)="login()">Ok</button>
 </div>

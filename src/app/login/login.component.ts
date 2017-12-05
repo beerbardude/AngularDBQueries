@@ -39,7 +39,9 @@ export class LoginComponent implements OnInit {
         }
         else {
             let inputName = document.getElementById('inputName');
+            let inputPass = document.getElementById('inputPass');
             inputName.style.border = '1px solid #f00';
+            inputPass.style.border = '1px solid #f00';
             this.redirectTo('login', 'login error');
         }
     }
