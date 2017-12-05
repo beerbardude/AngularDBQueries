@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
             this.redirectTo('queries', '');
         }
         else {
+            let inputName = document.getElementById('inputName');
+            inputName.style.border = '1px solid #f00';
             this.redirectTo('login', 'login error');
         }
     }
