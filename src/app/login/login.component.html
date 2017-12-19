@@ -1,13 +1,14 @@
 <div>
     <h2></h2>
         <label>User </label>
-        <input id="inputName" [(ngModel)]="user.name" required/>
+        <input type="text" id="inputName" [(ngModel)]="user.name" required/>
         <br>
         <label>Pass </label>
-        <input id="inputPass" [(ngModel)]="user.pass" required/>
+        <input type="password" id="inputPass" [(ngModel)]="user.pass" required/>
        
         <button (click)="login()">Ok</button>
 </div>
+<div *ngIf="error">Error</div>
 <app-messages></app-messages>
 
 

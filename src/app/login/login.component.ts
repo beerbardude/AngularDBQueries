@@ -16,6 +16,8 @@ import { Observer } from 'rxjs/Observer';
 
 export class LoginComponent implements OnInit {
     @Input() user : User;
+
+    error: boolean;
     
     constructor(
         private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        console.log(this.user.name);
         let loginResult = this.authenticationService.login(this.user);
         this.redirect(loginResult);
     }
@@ -38,12 +41,15 @@ export class LoginComponent implements OnInit {
             this.redirectTo('queries', '');
         }
         else {
-            let inputName = document.getElementById('inputName');
-            let inputPass = document.getElementById('inputPass');
-            inputName.style.border = '1px solid #f00';
-            inputPass.style.border = '1px solid #f00';
+            this.changeElementStyleById('inputName');
+            this.changeElementStyleById('inputPass');
             this.redirectTo('login', 'login error');
         }
+    }
+
+    changeElementStyleById(id: string) {
+        let element = document.getElementById(id);
+        element.style.border = '1px solid #f00';
     }
 
     redirectTo(routeString: string, message: string) {
