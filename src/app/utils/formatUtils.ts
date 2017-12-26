@@ -19,3 +19,4 @@ export function formatAsDate(value: Date): string {
 export function formatAsNumber(value: Number): string {
     return value.toLocaleString( 'de-DE', { minimumFractionDigits: 2 });
 }
+

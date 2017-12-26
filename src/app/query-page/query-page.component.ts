@@ -7,7 +7,9 @@ import { headersToString } from 'selenium-webdriver/http';
 import { validateConfig } from '@angular/router/src/config';
 import { User } from '../models/user';
 import { Input } from '@angular/core/src/metadata/directives';
-import { formatValue } from './formatUtils';
+import { formatValue } from '../utils/formatUtils';
+import { getIndexOfString, createTableCellWithValue, clearHtmlElement, createTableRowWithValues } from './query-page.utils';
+import { addLinkStyle } from './query-page.style';
 
 @Component({
   selector: 'app-query-page',
@@ -15,9 +17,16 @@ import { formatValue } from './formatUtils';
   styleUrls: ['./query-page.component.css']
 })
 export class QueryPageComponent implements OnInit {
+  id: any;
+  index: number;
   resultTable: HTMLElement;
   objects: any[];
   
+  htmlTableRowTag = 'tr';
+  htmlTableCellTag = 'td';
+  htmlLinkTag = 'a';
+  resultTableId = 'resultTable';
+
   constructor() { }
 
   ngOnInit() {  
@@ -35,67 +44,58 @@ export class QueryPageComponent implements OnInit {
     this.renderQueryResults(USERS);
   }
 
+  renderQueryResults(results: any) {
+    this.resultTable = document.getElementById(this.resultTableId);
+    clearHtmlElement(this.resultTable);
+    this.resultTable.appendChild(this.makeHeadingTableElements(results)); 
+    for (let index = 0; index < results.length; index++){
+      this.resultTable.appendChild(createTableRowWithValues(results, index));
+    }
+  }
+
   makeHeadingTableElements(objects: any[]): HTMLElement {
-    let tr = document.createElement('tr');
-    for (let key in objects[0]){
+    let tr = document.createElement(this.htmlTableRowTag);
+    this.index = 0;
+    for (let attribute in objects[0]){
       let th = document.createElement('th');
-      th.appendChild(this.addSortLink(key));
+      th.appendChild(this.createSortLink(attribute));
       tr.appendChild(th);
+      this.index++;
     }    
     return tr;
   } 
 
-  addSortLink(text: string): HTMLElement {
-    let link = document.createElement('a');
-    
+  createSortLink(text: string): HTMLElement {
+    let link = document.createElement(this.htmlLinkTag);
+    link.id = this.index.toString();
     link.addEventListener('click', this.sortTable);
-    
     link.innerHTML = text;
+    addLinkStyle(link);
     return link;
   }
 
-  renderQueryResults(objects: any) {
-    this.resultTable = document.getElementById('resultTable');
-    this.resultTable.innerHTML = '';
-    this.resultTable.appendChild(this.makeHeadingTableElements(objects));
-    
-    for (let index = 0; index < objects.length; index++){
-      let tr = document.createElement('tr');
-      let obj = objects[index];
-      for (let key in obj){        
-        let td = document.createElement('td');
-        let value = formatValue(obj[key]);
-        td.innerHTML = value;
-        tr.appendChild(td);      
-      }
-      this.resultTable.appendChild(tr);
-    }      
-  }
-
-
   sortTable() {
+    this.resultTable = document.getElementById("resultTable");
     let  rows, switching, i, x, y, shouldSwitch;
-    this.resultTable = document.getElementById("result");
     switching = true;
     /*Make a loop that will continue until
     no switching has been done:*/
     while (switching) {
       //start by saying: no switching is done:
       switching = false;
-      rows = this.resultTable.getElementsByTagName("TR");
+      rows = this.resultTable.getElementsByTagName("tr");
       /*Loop through all resultTable rows (except the
       first, which contains resultTable headers):*/
 
-      let columnIndex = this.getIndexOfString('name');
+      let columnIndex = getIndexOfString(this.id);
       for (i = 1; i < (rows.length - 1); i++) {
         //start by saying there should be no switching:
         shouldSwitch = false;
         /*Get the two elements you want to compare,
         one from current row and one from the next:*/
-        x = rows[i].getElementsByTagName("TD")[columnIndex];
-        y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+        x = rows[i].getElementsByTagName("td")[columnIndex];
+        y = rows[i + 1].getElementsByTagName("td")[columnIndex];
         //check if the two rows should switch place:
-        console.log(x.innerHTML, ' > ' , y.innerHTML);
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           //if so, mark as a switch and break the loop:
           shouldSwitch= true;
@@ -111,10 +111,4 @@ export class QueryPageComponent implements OnInit {
     }
   }
 
-  getIndexOfString(name: string): number {
-    if(name === 'name') {
-      return 1;
-    }
-  }
-  
 }

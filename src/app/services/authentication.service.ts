@@ -16,7 +16,7 @@ export class AuthenticationService {
   ) { }
 
   login(loginUser: User): Observable<User>{
-      console.log(loginUser);
+    console.log(loginUser);
     
 
     let result = of(USERS.find(user => user.name === loginUser.name && 
