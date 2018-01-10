@@ -10,6 +10,7 @@ import { MessageService } from './services/message.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { QueryPageComponent } from './query-page/query-page.component';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgbModule
   ],
   providers: [AuthenticationService, MessageService],
   bootstrap: [AppComponent]

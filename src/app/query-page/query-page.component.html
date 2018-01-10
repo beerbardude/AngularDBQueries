@@ -1,11 +1,17 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="test">
+<div class="container">
+  <div class="jumbotron">
 <h2>Queries ausführen</h2>
 <p>
-  <button (click)="getCustomers()">Kunden</button>
-  <button (click)="getPolicies()">Policen</button>
-  <button (click)="getUsers()">Benutzer</button>
+  <button (click)="getCustomers()" class="btn btn-secondary">Kunden</button>
+  <button (click)="getPolicies()" class="btn btn-secondary">Policen</button>
+  <button (click)="getUsers()" class="btn btn-secondary">Benutzer</button>
 </p>
 
 <hr>
 
-<table id="resultTable" ></table>
- 
+<table id="resultTable" class="table" >
+</table>
+  </div>
+</div>
+

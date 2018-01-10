@@ -1,5 +1,7 @@
-<div style="text-align:center">
+<div class="container">
+  <div class="jumbotron">
   <h1>{{title}}</h1>
+<button (click)="goToLogin()" class="btn btn-primary" id="loginbtn">Login</button>
+  </div>
 </div>
-<button (click)="goToLogin()">Login</button>
 <router-outlet></router-outlet>

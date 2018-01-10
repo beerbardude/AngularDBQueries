@@ -21,7 +21,7 @@ export class QueryPageComponent implements OnInit {
   index: number;
   resultTable: HTMLElement;
   objects: any[];
-  
+
   htmlTableRowTag = 'tr';
   htmlTableCellTag = 'td';
   htmlLinkTag = 'a';
@@ -29,7 +29,7 @@ export class QueryPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {  
+  ngOnInit() {
   }
 
   getCustomers() {
@@ -47,7 +47,7 @@ export class QueryPageComponent implements OnInit {
   renderQueryResults(results: any) {
     this.resultTable = document.getElementById(this.resultTableId);
     clearHtmlElement(this.resultTable);
-    this.resultTable.appendChild(this.makeHeadingTableElements(results)); 
+    this.resultTable.appendChild(this.makeHeadingTableElements(results));
     for (let index = 0; index < results.length; index++){
       this.resultTable.appendChild(createTableRowWithValues(results, index));
     }
@@ -61,9 +61,9 @@ export class QueryPageComponent implements OnInit {
       th.appendChild(this.createSortLink(attribute));
       tr.appendChild(th);
       this.index++;
-    }    
+    }
     return tr;
-  } 
+  }
 
   createSortLink(text: string): HTMLElement {
     let link = document.createElement(this.htmlLinkTag);

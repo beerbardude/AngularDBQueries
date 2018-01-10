@@ -1,12 +1,15 @@
-<div>
+<div class="container">
+  <div class="jumbotron">
     <h2></h2>
-        <label>User </label>
+        <label>User &emsp; </label>
         <input type="text" id="inputName" [(ngModel)]="user.name" required/>
         <br>
-        <label>Pass </label>
+        <label>Pass &emsp;</label>
         <input type="password" id="inputPass" [(ngModel)]="user.pass" required/>
-       
-        <button (click)="login()">Ok</button>
+        <br>
+        <br>
+        <button (click)="login()" class="btn btn-primary">Ok</button>
+  </div>
 </div>
 <div *ngIf="error">Error</div>
 <app-messages></app-messages>
