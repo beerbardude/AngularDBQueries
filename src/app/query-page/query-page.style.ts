@@ -1,3 +1,4 @@
+/*
 
 
 export function addTableRowStyle(htmlElement: HTMLElement) {
@@ -8,3 +9,4 @@ export function addLinkStyle(htmlLink: HTMLElement) {
     htmlLink.style.color = '#06f';
     htmlLink.style.fontFamily = 'Helvetica, sans-serif';
 }
+*/

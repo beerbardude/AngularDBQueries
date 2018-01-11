@@ -1,6 +1,7 @@
 import { formatValue } from "../utils/formatUtils";
-import { addTableRowStyle } from "./query-page.style";
+//import { addTableRowStyle } from "./query-page.style";
 
+const htmlTableBodyTag = 'tbody'
 const htmlTableRowTag = 'tr';
 const htmlTableCellTag = 'td';
 
@@ -22,13 +23,13 @@ export function createTableRowWithValues(results: any, index: number): HTMLEleme
     for (let attribute in result){
       tableRow.appendChild(createTableCellWithValue(result[attribute]));
     }
-    addTableRowStyle(tableRow);
+
+    //addTableRowStyle(tableRow);
     return tableRow;
 }
 
 export function createTableCellWithValue(value: string): HTMLElement {
     let td = document.createElement(htmlTableCellTag);
-    //td.setAttribute("class", "table");
     td.innerHTML = formatValue(value);
     return td;
 }
