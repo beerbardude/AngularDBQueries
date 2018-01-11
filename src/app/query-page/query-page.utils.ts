@@ -13,24 +13,25 @@ export function getIndexOfString(index: any): number {
 }
 
 export function clearHtmlElement(htmlElement: HTMLElement) {
-    htmlElement.innerHTML = '';    
+    htmlElement.innerHTML = '';
 }
 
 export function createTableRowWithValues(results: any, index: number): HTMLElement {
     let tableRow = document.createElement(htmlTableRowTag);
     let result = results[index];
-    for (let attribute in result){        
+    for (let attribute in result){
       tableRow.appendChild(createTableCellWithValue(result[attribute]));
-    }    
+    }
     addTableRowStyle(tableRow);
     return tableRow;
 }
 
 export function createTableCellWithValue(value: string): HTMLElement {
     let td = document.createElement(htmlTableCellTag);
+    //td.setAttribute("class", "table");
     td.innerHTML = formatValue(value);
     return td;
-}  
+}
 
 
 
