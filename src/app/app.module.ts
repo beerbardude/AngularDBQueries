@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -10,7 +11,7 @@ import { MessageService } from './services/message.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
@@ -24,10 +25,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
-    NgbModule
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [AuthenticationService, MessageService],
+  providers: [AuthenticationService, MessageService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

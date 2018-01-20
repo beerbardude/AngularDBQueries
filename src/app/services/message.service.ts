@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-import { User } from '../models/user';
 
 @Injectable()
 export class MessageService {
@@ -11,19 +9,10 @@ export class MessageService {
 
   messages: string[] = [];
 
-  constructor(
-    //private router: Router
-  ) { 
-    //router.events.subscribe(event => {
-      //if(event instanceof NavigationStart) {
-        /* if(this.keepAfterNavigationChange) {
-          this.keepAfterNavigationChange = false;
-        } 
-        else { */
-          //this.subject.next();
-        //}
-      //}
-    //})
+  constructor() {}
+
+  add(message: string) {
+    this.messages.push(message);
   }
 
   success(message: string, keepAfterNavigationChange = false) {
