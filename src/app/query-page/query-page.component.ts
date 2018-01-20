@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CUSTOMERS } from '../db/mock/mock-customers';
-import { POLICIES } from '../db/mock/mock-policies';
 import { USERS } from '../db/mock/mock-users';
 import { forEach } from '@angular/router/src/utils/collection';
 import { headersToString } from 'selenium-webdriver/http';
@@ -9,7 +7,11 @@ import { User } from '../models/user';
 import { Input } from '@angular/core/src/metadata/directives';
 import { formatValue } from '../utils/formatUtils';
 import { getIndexOfString, createTableCellWithValue, clearHtmlElement, createTableRowWithValues } from './query-page.utils';
-//import { addLinkStyle } from './query-page.style';
+import { DataService } from '../services/data.service';
+import { htmlTableRowTag, htmlLinkTag, htmlTableHeadTag, htmlTableCellTag } from '../utils/htmlUtils';
+import { MessageService } from '../services/message.service';
+
+const resultTableId = 'resultTable';
 
 @Component({
   selector: 'app-query-page',
@@ -22,32 +24,41 @@ export class QueryPageComponent implements OnInit {
   resultTable: HTMLElement;
   resultTableHeader: HTMLElement;
   resultTableBody: HTMLElement;
-  objects: any[];
 
-  htmlTableRowTag = 'tr';
-  htmlTableCellTag = 'td';
-  htmlLinkTag = 'a';
-  resultTableId = 'resultTable';
-
-  constructor() { }
+  constructor(
+    private messageServie : MessageService,
+    private dataService : DataService
+  ) { }
 
   ngOnInit() {
+    //this.hideLoginButton();
   }
 
-  getCustomers() {
-    this.renderQueryResults(CUSTOMERS);
+  // hideLoginButton() {
+  //   let buttons = document.getElementsByTagName('Button');
+  //   for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++){
+  //     let button = (buttons[buttonIndex] as HTMLElement);
+  //     if(button.innerHTML === 'Login') {
+  //       button.style.display = 'none';
+  //     }
+  //   }
+  // }
+
+  showCustomers(): void {
+    this.dataService.getCustomers().subscribe(customers => this.renderQueryResults(customers));
   }
 
-  getPolicies() {
-    this.renderQueryResults(POLICIES);
+  showPolicies() {
+    this.dataService.getPolicies().subscribe(policies => this.renderQueryResults(policies));
   }
 
-  getUsers() {
-    this.renderQueryResults(USERS);
+  showCustomerWithPolcies() {
+    this.dataService.getCustomerWithPolicies().subscribe(customersWithPolcies => this.renderQueryResults(customersWithPolcies));
   }
+
 
   renderQueryResults(results: any) {
-    this.resultTable = document.getElementById(this.resultTableId);
+    this.resultTable = document.getElementById(resultTableId);
     clearHtmlElement(this.resultTable);
     this.resultTableHeader = this.resultTable.appendChild(document.createElement("thead"));
     this.resultTableHeader.appendChild(this.makeHeadingTableElements(results));
@@ -58,7 +69,7 @@ export class QueryPageComponent implements OnInit {
   }
 
   makeHeadingTableElements(objects: any[]): HTMLElement {
-    const tr = document.createElement(this.htmlTableRowTag);
+    const tr = document.createElement(htmlTableRowTag);
     this.index = 0;
     for (const attribute in objects[0]){
       const th = document.createElement('th');
@@ -71,11 +82,10 @@ export class QueryPageComponent implements OnInit {
   }
 
   createSortLink(text: string): HTMLElement {
-    const link = document.createElement(this.htmlLinkTag);
+    const link = document.createElement(htmlLinkTag);
     link.id = this.index.toString();
     link.addEventListener('click', this.sortTable);
     link.innerHTML = text;
-    //addLinkStyle(link);
     return link;
   }
 
@@ -83,33 +93,20 @@ export class QueryPageComponent implements OnInit {
     this.resultTable = document.getElementById('resultTable');
     let  rows, switching, i, x, y, shouldSwitch;
     switching = true;
-    /*Make a loop that will continue until
-    no switching has been done:*/
     while (switching) {
-      //start by saying: no switching is done:
       switching = false;
       rows = this.resultTable.getElementsByTagName('tr');
-      /*Loop through all resultTable rows (except the
-      first, which contains resultTable headers):*/
-
       const columnIndex = getIndexOfString(this.id);
       for (i = 1; i < (rows.length - 1); i++) {
-        //start by saying there should be no switching:
         shouldSwitch = false;
-        /*Get the two elements you want to compare,
-        one from current row and one from the next:*/
         x = rows[i].getElementsByTagName('td')[columnIndex];
         y = rows[i + 1].getElementsByTagName('td')[columnIndex];
-        //check if the two rows should switch place:
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       }
       if (shouldSwitch) {
-        /*If a switch has been marked, make the switch
-        and mark that a switch has been done:*/
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
       }

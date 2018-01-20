@@ -2,9 +2,9 @@
   <div class="jumbotron">
 <h2>Queries ausführen</h2>
 <p>
-  <button (click)="getCustomers()" class="btn btn-secondary">Kunden</button>
-  <button (click)="getPolicies()" class="btn btn-secondary">Policen</button>
-  <button (click)="getUsers()" class="btn btn-secondary">Benutzer</button>
+  <button (click)="showCustomers()" class="btn btn-secondary">Kunden</button>
+  <button (click)="showPolicies()" class="btn btn-secondary">Policen</button>
+  <button (click)="showCustomerWithPolcies()" class="btn btn-secondary">Kunden mit Policen</button>
 </p>
 
 <hr>
@@ -13,4 +13,5 @@
 </table>
   </div>
 </div>
+<app-messages></app-messages>
 
