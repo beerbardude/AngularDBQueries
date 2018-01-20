@@ -12,16 +12,16 @@ import { Customer } from '../models/customer';
 import { Policy } from '../models/policy';
 import { CustomerWithPolicy } from '../models/customerWithPolicy';
 import { User } from '../models/user';
- 
+
 
 @Injectable()
 export class DataService {
- 
+
   private getUsersUrl = 'http://localhost:3000/user';
   private getCustomersUrl = 'http://localhost:3000/customers';
   private getPoliciesUrl = 'http://localhost:3000/policies';
   private getCustomerWithPoliciesUrl = 'http://localhost:3000/customerswithpolicies';
-  
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService
@@ -47,6 +47,7 @@ export class DataService {
 
   private handleError<T> (operation, result?: T) {
     return (error: any): Observable<T> => {
+      console.log(error);
       this.log(`${operation} failed: ${error.name}`);
       return of(result as T);
     };
@@ -56,5 +57,5 @@ export class DataService {
   private log(message: string) {
     this.messageService.add('DataService: ' + message);
   }
-  
+
 }
