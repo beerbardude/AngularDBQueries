@@ -24,6 +24,7 @@ export class QueryPageComponent implements OnInit {
   resultTable: HTMLElement;
   resultTableHeader: HTMLElement;
   resultTableBody: HTMLElement;
+  dtOptions: DataTables.Settings = {};
 
   constructor(
     private messageServie : MessageService,
@@ -73,7 +74,6 @@ export class QueryPageComponent implements OnInit {
     this.index = 0;
     for (const attribute in objects[0]){
       const th = document.createElement('th');
-      th.setAttribute('scope', 'col');
       th.appendChild(this.createSortLink(attribute));
       tr.appendChild(th);
       this.index++;
@@ -82,14 +82,14 @@ export class QueryPageComponent implements OnInit {
   }
 
   createSortLink(text: string): HTMLElement {
-    const link = document.createElement(htmlLinkTag);
-    link.id = this.index.toString();
-    link.addEventListener('click', this.sortTable);
+    const link = document.createElement("text");
+    //link.id = this.index.toString();
+    //link.addEventListener('click', this.sortTable);
     link.innerHTML = text;
     return link;
   }
 
-  sortTable() {
+/*  sortTable() {
     this.resultTable = document.getElementById('resultTable');
     let  rows, switching, i, x, y, shouldSwitch;
     switching = true;
@@ -111,6 +111,6 @@ export class QueryPageComponent implements OnInit {
         switching = true;
       }
     }
-  }
+  }*/
 
 }

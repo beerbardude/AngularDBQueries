@@ -1,6 +1,5 @@
-<div class="container">
-  <div class="jumbotron">
-    <h2></h2>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container-fluid" style="padding-left:100px; padding-right:100px">
         <label>User&ensp;</label>
         <input type="text" id="inputName" [(ngModel)]="user.name" required/>
         <br>
@@ -15,8 +14,8 @@
 <app-messages></app-messages>
 
 
-<div>
-   <!--  <h2>Login</h2>
+<!--<div>
+   &lt;!&ndash;  <h2>Login</h2>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Username</label>
@@ -31,5 +30,6 @@
         <div class="form-group">
             <button [disabled]="loading" >Login</button>
         </div>
-    </form> -->
-  </div>
+    </form> &ndash;&gt;
+  </div>-->
+

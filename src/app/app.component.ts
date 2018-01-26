@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, NavigationStart} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Login Test';
-  
+  title = 'Database Queries';
+  showComponent;
+
   constructor(
     private router: Router
-  ) { } 
+  ) {
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart){
+        this.showComponent = event.url !== "/queries";
+      }
+    })
+/*    if (this.router.url === '/queries') {
+      this.showComponent = false;}*/
+  }
 
   goToLogin() {
     this.router.navigate(['login']);
   }
+
 
 }

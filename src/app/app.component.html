@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="jumbotron">
+<div class="jumbotron">
+<div class="container-fluid">
   <h1>{{title}}</h1>
-<button (click)="goToLogin()" class="btn btn-primary" id="loginbtn">Login</button>
+<button (click)="goToLogin()" *ngIf="showComponent" class="btn btn-primary" id="loginbtn">Login</button>
   </div>
 </div>
 <router-outlet></router-outlet>
