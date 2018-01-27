@@ -24,13 +24,13 @@ export class AppPage {
   getCustomers() {
     this.loginmethod();
     customerButton.click();
-    return element(by.id('resultTable'));
+    return element(by.id('customer-grid'));
   }
 
   getfirstIdofCustomerTable() {
     this.loginmethod();
     customerButton.click();
-    return element(by.css('td'));
+    return element(by.className('data-column column-id'));
   }
 
   loginmethod() {

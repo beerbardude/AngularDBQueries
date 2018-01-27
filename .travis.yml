@@ -12,8 +12,9 @@ before_install:
 install:
     - npm install
 before_script:
+  - chmod 755
+  - ./express.sh
   - psql -c 'create database semester3;' -U postgres
   - psql -U postgres -d semester3 -f appTest/travis.sql
-  - node index.js &
 script:
   - ng test
