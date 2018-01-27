@@ -3,18 +3,17 @@ language: node_js
 node_js:
   - "7"
 addons:
-  postgresql: "9.4"
-
+  postgresql: "9.4",
+  chrome: stable
 services:
     - postgresql
-before_install:
-  - git clone --depth=50 --branch=master https://github.com/arminbeiner/ExpressDB.git arminbeiner/ExpressDBall
 install:
     - npm install
 before_script:
-  - chmod 755
-  - ./express.sh
+  - psql -U postgres -d semester3 -f travis/travis.sql
   - psql -c 'create database semester3;' -U postgres
-  - psql -U postgres -d semester3 -f appTest/travis.sql
+  - sudo chown -R travis ./travis/express.sh
+  - sudo chmod +x ./travis/express.sh
+  - ./travis/express.sh
 script:
   - ng test
