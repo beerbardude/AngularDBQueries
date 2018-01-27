@@ -1,13 +1,13 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container-fluid" style="padding-left:100px; padding-right:100px">
-        <label>User&ensp;</label>
+        <label class="userlabel">User&ensp;</label>
         <input type="text" id="inputName" [(ngModel)]="user.name" required/>
         <br>
         <label>Pass&ensp;</label>
         <input type="password" id="inputPass" [(ngModel)]="user.pass" required/>
         <br>
         <br>
-        <button (click)="login()" class="btn btn-primary">Ok</button>
+        <button (click)="login()" class="btn btn-primary" id="okButton">Ok</button>
   </div>
 </div>
 <div *ngIf="error">Error</div>
