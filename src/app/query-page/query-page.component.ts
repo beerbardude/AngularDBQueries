@@ -24,7 +24,6 @@ export class QueryPageComponent implements OnInit {
   resultTable: HTMLElement;
   resultTableHeader: HTMLElement;
   resultTableBody: HTMLElement;
-  dtOptions: DataTables.Settings = {};
 
   constructor(
     private messageServie : MessageService,
