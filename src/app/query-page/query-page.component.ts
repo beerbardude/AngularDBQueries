@@ -1,17 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { USERS } from '../db/mock/mock-users';
-import { forEach } from '@angular/router/src/utils/collection';
-import { headersToString } from 'selenium-webdriver/http';
-import { validateConfig } from '@angular/router/src/config';
-import { User } from '../models/user';
-import { Input } from '@angular/core/src/metadata/directives';
-import { formatValue } from '../utils/formatUtils';
-import { getIndexOfString, createTableCellWithValue, clearHtmlElement, createTableRowWithValues } from './query-page.utils';
 import { DataService } from '../services/data.service';
-import { htmlTableRowTag, htmlLinkTag, htmlTableHeadTag, htmlTableCellTag } from '../utils/htmlUtils';
-import { MessageService } from '../services/message.service';
-
-const resultTableId = 'resultTable';
+import { DataTableResource } from '../utils/data-table';
 
 @Component({
   selector: 'app-query-page',
@@ -22,94 +11,70 @@ export class QueryPageComponent implements OnInit {
   id: any;
   index: number;
   resultTable: HTMLElement;
-  resultTableHeader: HTMLElement;
-  resultTableBody: HTMLElement;
 
-  constructor(
-    private messageServie : MessageService,
-    private dataService : DataService
-  ) { }
+  itemResource: any;
+  items = [];
+  itemCount = 0;
+
+  customerTable: HTMLElement;
+  policyTable: HTMLElement;
+  customerPolicyTable: HTMLElement;
+
+  constructor(private dataService : DataService) {}
 
   ngOnInit() {
-    //this.hideLoginButton();
+    this.customerTable = document.getElementById('customer-grid');
+    this.policyTable = document.getElementById('policy-grid');
+    this.customerPolicyTable = document.getElementById('customer-policy-grid');
+    this.hideTables();
   }
 
-  // hideLoginButton() {
-  //   let buttons = document.getElementsByTagName('Button');
-  //   for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++){
-  //     let button = (buttons[buttonIndex] as HTMLElement);
-  //     if(button.innerHTML === 'Login') {
-  //       button.style.display = 'none';
-  //     }
-  //   }
-  // }
+  hideTables() {
+    this.customerTable.style.display = 'none';
+    this.policyTable.style.display = 'none';
+    this.customerPolicyTable.style.display = 'none';
+  }
+
+  showTable(table: HTMLElement) {
+    table.style.display = '';
+  }
 
   showCustomers(): void {
-    this.dataService.getCustomers().subscribe(customers => this.renderQueryResults(customers));
+    this.dataService.getCustomers().subscribe(customers => {
+      this.hideTables();
+      this.showTable(this.customerTable);
+      this.createDatatableResourceAndCount(customers);
+      this.reloadItems(this.itemResource);
+    });
+  }
+
+  reloadItems(params) {
+    if (this.itemResource !== undefined) {
+      this.itemResource.query(params).then(items => {this.items = items});
+    }
   }
 
   showPolicies() {
-    this.dataService.getPolicies().subscribe(policies => this.renderQueryResults(policies));
+    this.dataService.getPolicies().subscribe(policies => {
+      this.hideTables();
+      this.showTable(this.policyTable);
+      this.createDatatableResourceAndCount(policies);
+      this.reloadItems(this.itemResource);
+    });
   }
 
   showCustomerWithPolcies() {
-    this.dataService.getCustomerWithPolicies().subscribe(customersWithPolcies => this.renderQueryResults(customersWithPolcies));
+    this.dataService.getCustomerWithPolicies().subscribe(customersWithPolcies => {
+      this.hideTables();
+      this.showTable(this.customerPolicyTable);
+      this.createDatatableResourceAndCount(customersWithPolcies);
+      this.reloadItems(this.itemResource);
+    });
   }
 
-
-  renderQueryResults(results: any) {
-    this.resultTable = document.getElementById(resultTableId);
-    clearHtmlElement(this.resultTable);
-    this.resultTableHeader = this.resultTable.appendChild(document.createElement("thead"));
-    this.resultTableHeader.appendChild(this.makeHeadingTableElements(results));
-    this.resultTableBody = this.resultTable.appendChild(document.createElement("tbody"))
-    for (let index = 0; index < results.length; index++){
-      this.resultTableBody.appendChild(createTableRowWithValues(results, index));
-    }
+  createDatatableResourceAndCount(values) {
+    this.itemResource = new DataTableResource(values);
+    this.itemResource.count().then(count => this.itemCount = count);
   }
-
-  makeHeadingTableElements(objects: any[]): HTMLElement {
-    const tr = document.createElement(htmlTableRowTag);
-    this.index = 0;
-    for (const attribute in objects[0]){
-      const th = document.createElement('th');
-      th.appendChild(this.createSortLink(attribute));
-      tr.appendChild(th);
-      this.index++;
-    }
-    return tr;
-  }
-
-  createSortLink(text: string): HTMLElement {
-    const link = document.createElement("text");
-    //link.id = this.index.toString();
-    //link.addEventListener('click', this.sortTable);
-    link.innerHTML = text;
-    return link;
-  }
-
-/*  sortTable() {
-    this.resultTable = document.getElementById('resultTable');
-    let  rows, switching, i, x, y, shouldSwitch;
-    switching = true;
-    while (switching) {
-      switching = false;
-      rows = this.resultTable.getElementsByTagName('tr');
-      const columnIndex = getIndexOfString(this.id);
-      for (i = 1; i < (rows.length - 1); i++) {
-        shouldSwitch = false;
-        x = rows[i].getElementsByTagName('td')[columnIndex];
-        y = rows[i + 1].getElementsByTagName('td')[columnIndex];
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      }
-    }
-  }*/
 
 }

@@ -9,9 +9,200 @@
 
 <hr>
 
-<table class="table table-striped table-bordered table-hover"  id="resultTable">
-</table>
-  </div>
+  <data-table id="customer-grid"
+              headerTitle="Kunden"
+              [items]="items"
+              [itemCount]="itemCount"
+              [indexColumn]="false"
+              (reload)="reloadItems($event)">
+
+    <data-table-column
+      [property]="'id'"
+      [header]="'ID'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'lastname'"
+      [header]="'Lastname'"
+      [sortable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'firstname'"
+      [header]="'Firstname'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'street'"
+      [header]="'Strasse'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'housenumber'"
+      [header]="'Hausnummer'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'postcode'"
+      [header]="'PLZ'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'town'"
+      [header]="'Stadt'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'country'"
+      [header]="'Land'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'language'"
+      [header]="'Sprache'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+  </data-table>
+
+  <data-table id="customer-policy-grid"
+              headerTitle="Kunden mit Policen"
+              [items]="items"
+              [itemCount]="itemCount"
+              [indexColumn]="false"
+              (reload)="reloadItems($event)">
+
+    <data-table-column
+      [property]="'lastname'"
+      [header]="'Lastname'"
+      [sortable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'firstname'"
+      [header]="'Firstname'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'street'"
+      [header]="'Strasse'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'housenumber'"
+      [header]="'Hausnummer'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'postcode'"
+      [header]="'PLZ'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'town'"
+      [header]="'Stadt'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'country'"
+      [header]="'Land'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'language'"
+      [header]="'Sprache'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'policynumber'"
+      [header]="'Police'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'startdate'"
+      [header]="'Start'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'enddate'"
+      [header]="'Ende'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'premium'"
+      [header]="'Prämie'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'currency'"
+      [header]="'Währung'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+  </data-table>
+
+  <data-table id="policy-grid"
+              headerTitle="Policen"
+              [items]="items"
+              [itemCount]="itemCount"
+              [indexColumn]="false"
+              (reload)="reloadItems($event)">
+
+    <data-table-column
+      [property]="'id'"
+      [header]="'ID'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'policynumber'"
+      [header]="'Police'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'startdate'"
+      [header]="'Start'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'enddate'"
+      [header]="'Ende'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'premium'"
+      [header]="'Prämie'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+    <data-table-column
+      [property]="'currency'"
+      [header]="'Währung'"
+      [sortable]="true"
+      [resizable]="true">
+    </data-table-column>
+  </data-table>
+
 </div>
-<app-messages></app-messages>
+  <app-messages></app-messages>
+</div>
 

@@ -13,19 +13,13 @@ import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
 import { DataService } from './services/data.service';
 import {DataTableModule} from "./utils/data-table/index";
-import { TableCustomerComponent } from './table-customer/table-customer.component';
-import { TablePolicyComponent } from './table-policy/table-policy.component';
-import { TableCustomerPolicyComponent } from './table-customer-policy/table-customer-policy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MessagesComponent,
-    QueryPageComponent,
-    TableCustomerComponent,
-    TablePolicyComponent,
-    TableCustomerPolicyComponent,
+    QueryPageComponent
   ],
   imports: [
     DataTableModule,
