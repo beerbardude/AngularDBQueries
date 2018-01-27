@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 
@@ -31,31 +29,29 @@ export class DataService {
     return this.http.get<User[]>(this.getUsersUrl);
   }
 
-  getCustomers (): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.getCustomersUrl)
-      .pipe(catchError(this.handleError('getCustomers', [])));
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get(this.getCustomersUrl)
+      .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
   getPolicies (): Observable<Policy[]> {
-    return this.http.get<Policy[]>(this.getPoliciesUrl);
+    return this.http.get(this.getPoliciesUrl)
+      .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
   getCustomerWithPolicies (): Observable<CustomerWithPolicy[]> {
-    return this.http.get<CustomerWithPolicy[]>(this.getCustomerWithPoliciesUrl);
+    return this.http.get(this.getCustomerWithPoliciesUrl)
+      .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
-
-  private handleError<T> (operation, result?: T) {
-    return (error: any): Observable<T> => {
-      console.log(error);
-      this.log(`${operation} failed: ${error.name}`);
-      return of(result as T);
-    };
+  private handleErrorObservable (error: Response | any) {
+    return Observable.throw(error.message || error);
   }
 
-
-  private log(message: string) {
-    this.messageService.add('DataService: ' + message);
+  private log(message: any) {
+    if (message.code !== undefined) {
+      this.messageService.add(message.code);
+    }
   }
 
 }
