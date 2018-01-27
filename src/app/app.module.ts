@@ -13,13 +13,12 @@ import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
 import { DataService } from './services/data.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MessagesComponent,
-    QueryPageComponent
+    QueryPageComponent,
   ],
   imports: [
     AppRoutingModule,
