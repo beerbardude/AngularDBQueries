@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
 import { DataService } from './services/data.service';
-import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DataTablesModule,
     HttpModule
   ],
   providers: [AuthenticationService, MessageService, DataService],
