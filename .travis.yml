@@ -9,10 +9,11 @@ services:
     - postgresql
 before_install:
   - git clone --depth=50 --branch=master https://github.com/arminbeiner/ExpressDB.git arminbeiner/ExpressDBall
+install:
+    - npm install
 before_script:
   - psql -c 'create database semester3;' -U postgres
   - psql -U postgres -d semester3 -f appTest/travis.sql
-install:
-  - npm install
+  - npm start
 script:
   - ng test
