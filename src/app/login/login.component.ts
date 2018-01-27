@@ -1,13 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { AuthenticationService } from '../services/authentication.service';
 import { MessageService } from '../services/message.service';
 import { User } from '../models/user';
-import { QueryPageComponent } from '../query-page/query-page.component';
-import { Observable } from 'rxjs/Observable';
-import { ObservableInput } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
 @Component({
     moduleId: module.id,
@@ -17,21 +12,24 @@ import { Observer } from 'rxjs/Observer';
 export class LoginComponent implements OnInit {
     @Input() user : User;
 
+    inputNameId = 'inputName';
+    inputPassId = 'inputPass';
+    borderStyle = '1px solid #f00';
+
     error: boolean;
-    
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private messageService: MessageService        
+        private messageService: MessageService
     ) { }
 
     ngOnInit(): void {
-        this.user = new User();        
+        this.user = new User();
     }
 
     login() {
-        console.log(this.user.name);
         let loginResult = this.authenticationService.login(this.user);
         this.redirect(loginResult);
     }
@@ -41,15 +39,15 @@ export class LoginComponent implements OnInit {
             this.redirectTo('queries', '');
         }
         else {
-            this.changeElementStyleById('inputName');
-            this.changeElementStyleById('inputPass');
-            this.redirectTo('login', 'login error');
+            this.changeElementStyleById(this.inputNameId);
+            this.changeElementStyleById(this.inputPassId);
+            this.redirectTo('login', 'Wrong Login');
         }
     }
 
     changeElementStyleById(id: string) {
         let element = document.getElementById(id);
-        element.style.border = '1px solid #f00';
+        element.style.border = this.borderStyle;
     }
 
     redirectTo(routeString: string, message: string) {
