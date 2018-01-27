@@ -10,8 +10,8 @@ services:
 install:
   - npm install
 before_script:
-  - psql -U postgres -d semester3 -f travis/travis.sql
   - psql -c 'create database semester3;' -U postgres
+  - psql -U postgres -d semester3 -f travis/travis.sql
   - sudo chown -R travis ./travis/express.sh
   - sudo chmod +x ./travis/express.sh
   - ./travis/express.sh
