@@ -15,7 +15,7 @@ export class AppComponent {
   ) {
     router.events.forEach((event) => {
       if(event instanceof NavigationStart){
-        this.showComponent = event.url !== "/queries";
+        this.showComponent = event.url == "/";
       }
     })
 /*    if (this.router.url === '/queries') {
