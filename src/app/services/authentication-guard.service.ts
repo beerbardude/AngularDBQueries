@@ -12,7 +12,6 @@ export class AuthenticationGuardService {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     if(this.auth.isValid()) {
-      console.log("What the fuck is going on??")
       return true;
     } else {
       this.router.navigate(['/login'], {
@@ -21,7 +20,6 @@ export class AuthenticationGuardService {
         }
       })
     }
-    console.log("yeah authenticated")
     return false;
     }
 

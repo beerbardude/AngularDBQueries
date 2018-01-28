@@ -27,6 +27,7 @@ export class AppPage {
     return element(by.id('customer-grid'));
   }
 
+  //TODO: Test so anpassen, dass nur id von erstem Reihe ausglesen wird, nicht mehrere Values (da erster Eintrag übernommen wird, funktioniert Test bereits, allerdings mit Warning: more than one element found for locator By(css selector, .data-column.column-id) - the first result will be used)
   getfirstIdofCustomerTable() {
     this.loginmethod();
     customerButton.click();

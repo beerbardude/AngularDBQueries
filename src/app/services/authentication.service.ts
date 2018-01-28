@@ -8,7 +8,7 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthenticationService {
 
-  valueforAuth: boolean
+  valueforAuth = false;
 
   constructor(
   ) { }
@@ -26,5 +26,4 @@ export class AuthenticationService {
   isValid(){
     return this.valueforAuth
   }
-
 }
