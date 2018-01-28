@@ -1,8 +1,10 @@
-<div *ngIf="messageService.messages.length">
-  
-    <h3>Messages</h3>
-    <button class="clear"
+<div class="jumbotron jumbotron-fluid">
+  <div class="container-fluid">
+    <div *ngIf="messageService.messages.length">
+      <h3>Messages</h3>
+      <button class="clear btn btn-warning"
       (click)="messageService.clear()">clear</button>
-    <div *ngFor='let message of messageService.messages'> {{message}} </div>
-  
+      <div *ngFor='let message of messageService.messages'> {{message}} </div>
+    </div>
+  </div>
 </div>

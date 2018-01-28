@@ -9,6 +9,7 @@
         <br>
         <button (click)="login()" class="btn btn-primary" id="okButton">Ok</button>
   </div>
+  <div *ngIf="error">Error</div>
+  <app-messages></app-messages>
 </div>
-<div *ngIf="error">Error</div>
-<app-messages></app-messages>
+
