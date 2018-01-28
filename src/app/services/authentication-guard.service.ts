@@ -8,6 +8,8 @@ export class AuthenticationGuardService {
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
+  //TODO: canActivate so ergänzen, dass nach erfolgreichem Login bei Refresh Session gültig bleibt
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     if(this.auth.isValid()) {
       console.log("What the fuck is going on??")
