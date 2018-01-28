@@ -13,6 +13,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
 import { DataService } from './services/data.service';
 import {DataTableModule} from "./utils/data-table/index";
+import { AuthenticationGuardService } from './services/authentication-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {DataTableModule} from "./utils/data-table/index";
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService, MessageService, DataService, HttpClient],
+  providers: [AuthenticationService, MessageService, DataService, HttpClient, AuthenticationGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

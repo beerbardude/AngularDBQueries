@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
     redirect(data: any) {
         if(typeof data.value !== 'undefined') {
+            this.authenticationService.setValid(true);
             this.redirectTo('queries', '');
         }
         else {

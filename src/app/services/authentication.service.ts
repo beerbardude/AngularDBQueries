@@ -8,12 +8,23 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthenticationService {
 
+  valueforAuth: boolean
+
   constructor(
   ) { }
 
   login(loginUser: User): Observable<User>{
     return of(USERS.find(user => user.name === loginUser.name &&
                                        user.pass === loginUser.pass));
+  }
+
+  setValid(value){
+    this.valueforAuth = value
+
+  }
+
+  isValid(){
+    return this.valueforAuth
   }
 
 }
