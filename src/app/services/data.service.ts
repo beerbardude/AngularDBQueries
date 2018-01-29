@@ -6,14 +6,11 @@ import { catchError, tap } from 'rxjs/operators';
 import { Customer } from '../models/customer';
 import { Policy } from '../models/policy';
 import { CustomerWithPolicy } from '../models/customerWithPolicy';
+import {getCustomersUrl, getCustomerWithPoliciesUrl, getPoliciesUrl} from '../utils/urls';
 
 
 @Injectable()
 export class DataService {
-
-  private getCustomersUrl = 'http://localhost:3000/customers';
-  private getPoliciesUrl = 'http://localhost:3000/policies';
-  private getCustomerWithPoliciesUrl = 'http://localhost:3000/customerswithpolicies';
 
   constructor(
     private http: HttpClient,
@@ -21,17 +18,17 @@ export class DataService {
   ) { }
 
   getCustomers(): Observable<Customer[]> {
-    return this.http.get(this.getCustomersUrl)
+    return this.http.get(getCustomersUrl)
       .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
   getPolicies (): Observable<Policy[]> {
-    return this.http.get(this.getPoliciesUrl)
+    return this.http.get(getPoliciesUrl)
       .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
   getCustomerWithPolicies (): Observable<CustomerWithPolicy[]> {
-    return this.http.get(this.getCustomerWithPoliciesUrl)
+    return this.http.get(getCustomerWithPoliciesUrl)
       .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 

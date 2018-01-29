@@ -30,12 +30,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        let loginResult = this.authenticationService.login(this.user);
-        this.redirect(loginResult);
+      this.authenticationService.loginUser(this.user).subscribe(user => this.redirect(user));
     }
 
     redirect(data: any) {
-        if(typeof data.value !== 'undefined') {
+        if(typeof data[0] !== 'undefined') {
             this.authenticationService.setValid(true);
             this.redirectTo('queries', '');
         }

@@ -10,7 +10,6 @@ import { DataTableResource } from '../utils/data-table';
 export class QueryPageComponent implements OnInit {
   id: any;
   index: number;
-  resultTable: HTMLElement;
 
   itemResource: any;
   items = [];
