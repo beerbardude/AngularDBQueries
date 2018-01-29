@@ -1,11 +1,10 @@
 export function formatValue(value: any): any {
-    if(value instanceof Date) {
+    if (value instanceof Date) {
       return formatAsDate(value);
     }
-    if(value instanceof Number) {
+    if (value instanceof Number) {
       return formatAsNumber(value);
-    }
-    else {
+    } else {
       return value;
     }
 }

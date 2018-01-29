@@ -19,7 +19,7 @@ describe('QueryPageComponent', () => {
     fixture.detectChanges();
   });
 
-  //:TODO make test work
+  // :TODO make test work
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });

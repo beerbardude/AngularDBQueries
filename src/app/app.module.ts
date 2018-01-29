@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MessagesComponent } from './messages/messages.component';
 import { QueryPageComponent } from './query-page/query-page.component';
 import { DataService } from './services/data.service';
-import {DataTableModule} from "./utils/data-table/index";
+import {DataTableModule} from './utils/data-table/index';
 import { AuthenticationGuardService } from './services/authentication-guard.service';
 
 @NgModule({

@@ -6,7 +6,7 @@ export class CustomerWithPolicy {
     postcode: number;
     town: string;
     country: string;
-    language: string;    
+    language: string;
     policynumber: string;
     startdate: Date;
     enddate: Date;

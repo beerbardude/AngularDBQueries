@@ -19,7 +19,7 @@ export class QueryPageComponent implements OnInit {
   policyTable: HTMLElement;
   customerPolicyTable: HTMLElement;
 
-  constructor(private dataService : DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.customerTable = document.getElementById('customer-grid');
@@ -34,14 +34,14 @@ export class QueryPageComponent implements OnInit {
     this.customerPolicyTable.style.display = 'none';
   }
 
-  static showTable(table: HTMLElement) {
+  showTable(table: HTMLElement) {
     table.style.display = '';
   }
 
   showCustomers(): void {
     this.dataService.getCustomers().subscribe(customers => {
       this.hideTables();
-      QueryPageComponent.showTable(this.customerTable);
+      this.showTable(this.customerTable);
       this.createDatatableResourceAndCount(customers);
       this.reloadItems(this.itemResource);
     });
@@ -49,14 +49,14 @@ export class QueryPageComponent implements OnInit {
 
   reloadItems(params) {
     if (this.itemResource !== undefined) {
-      this.itemResource.query(params).then(items => {this.items = items});
+      this.itemResource.query(params).then(items => { this.items = items; });
     }
   }
 
   showPolicies() {
     this.dataService.getPolicies().subscribe(policies => {
       this.hideTables();
-      QueryPageComponent.showTable(this.policyTable);
+      this.showTable(this.policyTable);
       this.createDatatableResourceAndCount(policies);
       this.reloadItems(this.itemResource);
     });
@@ -65,7 +65,7 @@ export class QueryPageComponent implements OnInit {
   showCustomerWithPolcies() {
     this.dataService.getCustomerWithPolicies().subscribe(customersWithPolcies => {
       this.hideTables();
-      QueryPageComponent.showTable(this.customerPolicyTable);
+      this.showTable(this.customerPolicyTable);
       this.createDatatableResourceAndCount(customersWithPolcies);
       this.reloadItems(this.itemResource);
     });

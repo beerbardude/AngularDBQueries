@@ -18,18 +18,18 @@ export class AuthenticationService {
 
   loginUser(user: User): Observable<User> {
     return this.http.get(getUserUrl + '/' + user.name + '/' + user.pass)
-      .pipe(tap( data => this.log(data)), catchError(AuthenticationService.handleErrorObservable));
+      .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
   }
 
-  setValid(value){
-    this.valueforAuth = value
+  setValid(value) {
+    this.valueforAuth = value;
   }
 
-  isValid(){
-    return this.valueforAuth
+  isValid() {
+    return this.valueforAuth;
   }
 
-  static handleErrorObservable (error: Response | any) {
+  handleErrorObservable (error: Response | any) {
     return Observable.throw(error.message || error);
   }
 

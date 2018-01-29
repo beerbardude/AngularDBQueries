@@ -10,7 +10,7 @@ import { User } from '../models/user';
 })
 
 export class LoginComponent implements OnInit {
-    @Input() user : User;
+    @Input() user: User;
 
     inputNameId = 'inputName';
     inputPassId = 'inputPass';
@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
     }
 
     redirect(data: any) {
-        if(typeof data[0] !== 'undefined') {
+        if (typeof data[0] !== 'undefined') {
             this.authenticationService.setValid(true);
             this.redirectTo('queries', '');
-        }
-        else {
+        } else {
             this.changeElementStyleById(this.inputNameId);
             this.changeElementStyleById(this.inputPassId);
             this.redirectTo('login', 'Wrong Login');
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
     }
 
     changeElementStyleById(id: string) {
-        let element = document.getElementById(id);
+        const element = document.getElementById(id);
         element.style.border = this.borderStyle;
     }
 

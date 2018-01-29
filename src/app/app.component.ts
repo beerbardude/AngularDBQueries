@@ -14,10 +14,10 @@ export class AppComponent {
     private router: Router
   ) {
     router.events.forEach((event) => {
-      if(event instanceof NavigationStart){
-        this.showComponent = event.url == "/";
+      if (event instanceof NavigationStart) {
+        this.showComponent = event.url === '/';
       }
-    })
+    });
   }
 
   goToLogin() {
