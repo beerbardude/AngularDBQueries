@@ -16,6 +16,7 @@ before_script:
   - sudo chmod +x ./travis/express.sh
   - ./travis/express.sh
 script:
-  - ng e2e
+  - ng serve
   - ng test
+  - ng e2e
 
