@@ -1,5 +1,11 @@
 DROP TABLE IF EXISTS Customer, Policy, Users;
 
+CREATE TABLE Users (
+id SERIAL PRIMARY KEY,
+name VARCHAR(50) NOT NULL UNIQUE,
+pass VARCHAR(30) NOT NULL
+);
+
 CREATE TABLE Customer (
 id SERIAL PRIMARY KEY,
 lastname VARCHAR(50) NOT NULL ,
@@ -92,3 +98,5 @@ ALTER TABLE POLICY ADD FOREIGN KEY (customerId) REFERENCES Customer(id);
 
         insert into policy (policynumber, customerid, startdate, enddate, premium, currency)
         values ('POL-0006-CH', 5, date('2013, 02, 17'), date('2036, 12, 12'), 8672340001, 'CHF');
+
+  insert into users (name, pass) values ('Tony', 'w1');
