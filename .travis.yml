@@ -17,3 +17,5 @@ before_script:
   - ./travis/express.sh
 script:
   - ng e2e
+  - ng test
+
