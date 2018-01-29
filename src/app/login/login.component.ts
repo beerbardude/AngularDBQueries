@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { MessageService } from '../services/message.service';
 import { User } from '../models/user';
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     error: boolean;
 
     constructor(
-        private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
         private messageService: MessageService

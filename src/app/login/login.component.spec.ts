@@ -6,6 +6,7 @@ import {MessagesComponent} from '../messages/messages.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AuthenticationService} from '../services/authentication.service';
 import {MessageService} from '../services/message.service';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +16,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, RouterTestingModule ],
       declarations: [ LoginComponent, MessagesComponent ],
-      providers: [ AuthenticationService , MessageService ]
+      providers: [ AuthenticationService , MessageService, HttpClientModule, HttpClient, HttpHandler ]
     })
     .compileComponents();
   }));

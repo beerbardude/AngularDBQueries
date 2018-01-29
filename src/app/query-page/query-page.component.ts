@@ -34,14 +34,14 @@ export class QueryPageComponent implements OnInit {
     this.customerPolicyTable.style.display = 'none';
   }
 
-  showTable(table: HTMLElement) {
+  static showTable(table: HTMLElement) {
     table.style.display = '';
   }
 
   showCustomers(): void {
     this.dataService.getCustomers().subscribe(customers => {
       this.hideTables();
-      this.showTable(this.customerTable);
+      QueryPageComponent.showTable(this.customerTable);
       this.createDatatableResourceAndCount(customers);
       this.reloadItems(this.itemResource);
     });
@@ -56,7 +56,7 @@ export class QueryPageComponent implements OnInit {
   showPolicies() {
     this.dataService.getPolicies().subscribe(policies => {
       this.hideTables();
-      this.showTable(this.policyTable);
+      QueryPageComponent.showTable(this.policyTable);
       this.createDatatableResourceAndCount(policies);
       this.reloadItems(this.itemResource);
     });
@@ -65,7 +65,7 @@ export class QueryPageComponent implements OnInit {
   showCustomerWithPolcies() {
     this.dataService.getCustomerWithPolicies().subscribe(customersWithPolcies => {
       this.hideTables();
-      this.showTable(this.customerPolicyTable);
+      QueryPageComponent.showTable(this.customerPolicyTable);
       this.createDatatableResourceAndCount(customersWithPolcies);
       this.reloadItems(this.itemResource);
     });

@@ -1,5 +1,3 @@
-import { Customer } from "./customer";
-
 export class Policy {
     id: number;
     policynumber: string;
@@ -7,5 +5,5 @@ export class Policy {
     startdate: Date;
     enddate: Date;
     premium: Number;
-    currency: string;    
+    currency: string;
 }

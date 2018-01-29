@@ -18,7 +18,7 @@ export class AuthenticationService {
 
   loginUser(user: User): Observable<User> {
     return this.http.get(getUserUrl + '/' + user.name + '/' + user.pass)
-      .pipe(tap( data => this.log(data)), catchError(this.handleErrorObservable));
+      .pipe(tap( data => this.log(data)), catchError(AuthenticationService.handleErrorObservable));
   }
 
   setValid(value){
@@ -29,7 +29,7 @@ export class AuthenticationService {
     return this.valueforAuth
   }
 
-  handleErrorObservable (error: Response | any) {
+  static handleErrorObservable (error: Response | any) {
     return Observable.throw(error.message || error);
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, NavigationStart} from '@angular/router';
 
 @Component({
@@ -18,13 +18,9 @@ export class AppComponent {
         this.showComponent = event.url == "/";
       }
     })
-/*    if (this.router.url === '/queries') {
-      this.showComponent = false;}*/
   }
 
   goToLogin() {
     this.router.navigate(['login']);
   }
-
-
 }
