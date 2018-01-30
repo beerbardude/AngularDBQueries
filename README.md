@@ -1,6 +1,6 @@
 | Travis Status |
 | --- |
-[![Build Status](https://travis-ci.org/beerbardude/AngularDBQueries.svg?branch=master)](https://travis-ci.org/beerbardude/AngularDBQueries)
+[![Build Status](https://travis-ci.org/ibwgr/AngularDBQueries.svg?branch=master)](https://travis-ci.org/ibwgr/AngularDBQueries)
 
 # AngularLogin
 
