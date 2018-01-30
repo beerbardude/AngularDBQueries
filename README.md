@@ -20,7 +20,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Login with users from this file: /src/app/db/insertUsers.sql
 Example:
+
 User: Tony
+
 Pass: w1
 
 ## Running unit tests
