@@ -16,6 +16,13 @@ For changing URI edit the file src/app/utils/urls.ts
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Login 
+
+Login with users from this file: /src/app/db/insertUsers.sql
+Example:
+User: Tony
+Pass: w1
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
